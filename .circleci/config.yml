@@ -21,7 +21,11 @@ jobs:
       # Use mvn clean and package as the standard maven build phase
       - run:
           name: Build
-          command: mvn -B -DskipTests clean package
+          command: mvn dependency:go-offline # gets the project dependencies
+
+      - run:
+          name: Install
+          command: mvn install
       # Then run your tests!
       - run:
           name: Test
